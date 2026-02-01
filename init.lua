@@ -5,6 +5,7 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
+vim.opt.winborder = "rounded"
 
 vim.g.mapleader = " "
 
@@ -16,8 +17,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.keymap.set('n', '<leader>g', vim.diagnostic.open_float)
+vim.keymap.set('n', '<C-.>', vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>sf', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>w', "::Pick files<CR>")
+vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', { noremap = true, silent = true })
 
 vim.opt.list = true
 vim.opt.listchars = {
@@ -58,7 +61,7 @@ cmp.setup({
 	}),
 })
 
-vim.lsp.enable({ "lua_ls" })
+vim.lsp.enable({ "lua_ls", "csharp_ls" })
 
 vim.cmd(":hi statusline guibg=NONE")
 vim.cmd("colorscheme vague")
